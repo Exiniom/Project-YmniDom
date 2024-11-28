@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игровая Комната</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="ym.js"></script>
+</head>
+<body>
+    <div class="notification-bar">Добро пожаловать в Игровую Комнату!</div>
+    <div class="container">
+        <header>
+            <h1>Игровая Комната</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="hall.html">Зал</a></li>
+                    <li><a href="game.html">Игровая</a></li>
+                    <li><a href="kitchen.html">Кухня</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section class="device-grid">
+                <div class="device">
+                    <i class="fas fa-tv"></i>
+                    <h2>Телевизор</h2>
+                    <button class="control-button" data-device="game_tv">Включить</button>
+                </div>
+                <div class="device">
+                    <i class="fas fa-gamepad"></i>
+                    <h2>Консоль</h2>
+                    <button class="control-button" data-device="game_console">Включить</button>
+                </div>
+                <div class="device">
+                    <i class="fas fa-desktop"></i>
+                    <h2>Компьютер</h2>
+                    <button class="control-button" data-device="game_pc">Включить</button>
+                </div>
+                <div class="device">
+                    <i class="fas fa-lightbulb"></i>
+                    <h2>Свет</h2>
+                    <button class="control-button" data-device="game_light">Включить</button>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

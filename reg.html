@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Регистрация</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="title">Регистрация</div>
+        <form id="registrationForm" method="POST" action="/register">  <!-- action="/register" -->
+            <div class="field">
+                <input type="text" id="username" name="username" required>
+                <label>Имя пользователя</label>
+            </div>
+            <div class="field">
+                <input type="password" id="password" name="password" required>
+                <label>Пароль</label>
+            </div>
+            <div class="field">
+                <input type="submit" value="Зарегистрироваться">
+            </div>
+            <div class="field">
+                <input type="button" value="Уже есть аккаунт?" onclick="window.location.href='login.html'">
+            </div>
+        </form>
+        <script>
+            document.getElementById('registrationForm').addEventListener('submit', async (event) => {
+                event.preventDefault(); // Предотвращаем стандартное поведение формы
+
+                const formData = new FormData(event.target); // Получаем данные из формы
+                const data = {};
+                formData.forEach((value, key) => data[key] = value);
+
+
+                try {
+                    const response = await fetch('/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data) // Отправляем данные в формате JSON
+                    });
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.error || 'Ошибка регистрации');
+                    }
+                    window.location.href = 'login.html';
+                } catch (error) {
+                    alert(error.message);
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Авторизация</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="title">Авторизация</div>
+        <form id="loginForm" method="POST" action="/login">
+            <div class="field">
+                <input type="text" id="username" name="username" required>
+                <label>Имя пользователя</label>
+            </div>
+            <div class="field">
+                <input type="password" id="password" name="password" required>
+                <label>Пароль</label>
+            </div>
+            <div class="field">
+                <input type="submit" value="Войти">
+            </div>
+            <div class="field">
+                <input type="button" value="Создать аккаунт" onclick="window.location.href='reg.html'">
+            </div>
+        </form>
+        <script>
+            document.getElementById('loginForm').addEventListener('submit', async (event) => {
+       event.preventDefault();
+
+       const formData = new FormData(event.target);
+       const data = {};
+       formData.forEach((value, key) => data[key] = value);
+
+       try {
+           const response = await fetch('/login', {
+               method: 'POST',
+               headers: {
+                   'Content-Type': 'application/json'
+               },
+               body: JSON.stringify(data)
+           });
+           if (!response.ok) {
+               const errorData = await response.json();
+               throw new Error(errorData.error || 'Ошибка авторизации');
+           }
+           // После успешной авторизации
+           window.location.href = 'index.html'; // Проверь путь на существующей странице
+       } catch (error) {
+           alert(error.message);
+       }
+   });
+        </script>
+    </div>
+</body>
+</html>
